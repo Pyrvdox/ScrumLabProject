@@ -1,0 +1,57 @@
+{% extends "__base__.html" %}
+
+{% block title %}Nowy przepis{% endblock %}
+
+{% block content %}
+<div class="dashboard-content border-dashed p-3 m-4 view-height">
+
+    <div class="mt-4 ml-4 mr-4">
+        <div class="row border-bottom border-3">
+            <div class="col"><h3 class="color-header text-uppercase">Nowy
+                przepis</h3></div>
+        <form method = 'POST'>
+            {% csrf_token %}
+            <div class="col d-flex justify-content-end mb-2">
+                <button type="submit"
+                        class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
+                    Zapisz
+                </button>
+            </div>
+        </div>
+
+        <table class="table borderless">
+            <tbody>
+            <tr class="d-flex">
+                <th scope="row" class="col-2">Nazwa Przepisu</th>
+                <td class="col-7">
+                    <input class="w-100 p-1" name="recipeName" value="">
+                </td>
+            </tr>
+            <tr class="d-flex">
+                <th scope="row" class="col-2">Opis przepisu</th>
+                <td class="col-7"><textarea class="w-100 p-1"
+                                            rows="5" name="recipeDescription"></textarea></td>
+            </tr>
+            <tr class="d-flex">
+                <th scope="row" class="col-2">Przygotowanie(minuty)</th>
+                <td class="col-3">
+                    <input class="p-1" type="number" name="recipeTime" value="">
+                </td>
+                <tr class="d-flex">
+                    <th scope="row" class="col-2">Składniki</th>
+                    <td class="col-7"><textarea class="w-100 p-1" rows="5" name="recipeIngredients"></textarea>
+                </tr>  
+            </tr>
+            </tbody>
+        </table>
+
+        
+        </form>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger">
+        <span>{{ error }}</span>
+    </div>
+{% endif %}
+</div>
+{% endblock content %}
